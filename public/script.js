@@ -18,7 +18,7 @@ async function fetchVideoInfo() {
   try {
     //Declara uma constante response que recebe uma função fetch para receber um JSON do video.
     const response = await fetch(
-      `http://localhost:3000/info?url=${encodeURIComponent(url)}`
+      `http://192.168.11.198:3000/info?url=${encodeURIComponent(url)}`
     );
     //Declara uma constante data que recebe as informações do JSON.
     const data = await response.json();
@@ -84,7 +84,7 @@ function downloadVideo() {
     const videoId = urlObj.searchParams.get("v");
     url = `https://www.youtube.com/watch?v=${videoId}`;
   }
-  window.location.href = `http://localhost:3000/download?url=${encodeURIComponent(
+  window.location.href = `http://192.168.11.198:3000/download?url=${encodeURIComponent(
     url
   )}&itag=${itag}`;
 }
