@@ -5,7 +5,12 @@ async function fetchVideoInfo() {
   let url = document.getElementById("url").value;
 
   if (url.includes("youtu.be")) {
-    const videoId = url.split("/").pop();
+    const videoId = url.split("/").pop().split("?")[0]; // Handle potential query parameters
+    url = `https://www.youtube.com/watch?v=${videoId}`;
+  } else if (url.includes("youtube.com")) {
+    // Remove query parameters other than v
+    const urlObj = new URL(url);
+    const videoId = urlObj.searchParams.get("v");
     url = `https://www.youtube.com/watch?v=${videoId}`;
   }
 
@@ -70,6 +75,15 @@ function downloadVideo() {
   //É retirado aqui a qualidade escolhida.
   const itag = document.getElementById("quality").value;
   //É feita uma requisição direta para a pasta de download
+  if (url.includes("youtu.be")) {
+    const videoId = url.split("/").pop().split("?")[0]; // Handle potential query parameters
+    url = `https://www.youtube.com/watch?v=${videoId}`;
+  } else if (url.includes("youtube.com")) {
+    // Remove query parameters other than v
+    const urlObj = new URL(url);
+    const videoId = urlObj.searchParams.get("v");
+    url = `https://www.youtube.com/watch?v=${videoId}`;
+  }
   window.location.href = `http://localhost:3000/download?url=${encodeURIComponent(
     url
   )}&itag=${itag}`;
