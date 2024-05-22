@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>YouTube Video Downloader</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="icon" href="logo.png" type="image/png" />
+  </head>
+  <body>
+    <div class="downloader" id="downloader">
+      <div class="bg"></div>
+      <div class="title">
+        <h1>YouTube Video Downloader</h1>
+      </div>
+      <div class="form">
+        <div class="part1">
+          <div class="url" id="link">
+            <i class="fa-solid fa-paste"></i>
+            <input type="text" id="url" placeholder="Enter YouTube URL" />
+          </div>
+          <button onclick="fetchVideoInfo()" id="enter">
+            <i class="fa-solid fa-arrow-right" id="arrow"></i>
+          </button>
+        </div>
+        <div id="video-info" style="display: none">
+          <img id="thumbnail" src="" alt="Thumbnail" />
+          <h2 id="title"></h2>
+          <select id="quality"></select>
+          <button onclick="downloadVideo()">
+            Download <i class="fa-solid fa-arrow-down"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="loading" id="loading">
+      <img src="loader.png" />
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

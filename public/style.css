@@ -1,0 +1,253 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter";
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(135deg, #000000, #2c2929);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.downloader {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 85%;
+  height: 80%;
+  background-color: transparent;
+  flex-direction: column;
+  border-radius: 20px;
+  min-width: 300px;
+  padding: 2%;
+  min-height: 350px;
+}
+
+.downloader .bg {
+  z-index: 0;
+  position: absolute;
+  background-color: #000000;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  filter: drop-shadow(10px 10px 200px #ff1313);
+}
+
+.downloader .title {
+  z-index: 10;
+  display: flex;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+  margin: 4%;
+}
+
+.downloader .title h1 {
+  color: white;
+}
+
+.downloader .form {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3%;
+  padding: 5%;
+  width: 80%;
+  max-height: 60%;
+}
+
+.url {
+  position: relative;
+  padding: 10px;
+  width: 100%;
+  height: 80%;
+  max-height: 35px;
+  margin: 5%;
+  border-radius: 16px;
+  margin-right: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  cursor: pointer;
+  transition: 1s ease;
+  filter: drop-shadow(2px 2px 4px #a22e2e);
+}
+
+.downloader .form .url input[type="text"] {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  border: none;
+  padding: 3px;
+  padding-left: 40px;
+  outline: none;
+}
+
+.downloader .form .url i {
+  position: absolute;
+  margin: 10px;
+  color: #827b7b;
+}
+
+#thumbnail {
+  width: 100%;
+  height: 50%;
+  max-width: 360px;
+  max-height: 270px;
+  margin-bottom: 5%;
+}
+
+#video-info {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1%;
+  border-radius: 10px;
+  width: 40%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#video-info h2 {
+  font-size: 100%;
+  width: 100%;
+  min-width: 80%;
+  top: 50%;
+  color: white;
+  text-align: center;
+}
+
+#video-info select {
+  width: 80%;
+  background-color: white;
+  border-radius: 20px;
+  margin: 2%;
+  border: none;
+  transition: 0.1s;
+  cursor: pointer;
+  padding: 5px;
+  outline: none;
+  text-align: center;
+}
+
+#video-info select:hover {
+  transform: scale(1.1);
+  transition: 0.1s;
+}
+
+#video-info button {
+  width: 80%;
+  background-color: white;
+  padding: 5px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: 0.1s;
+}
+
+#video-info button:hover {
+  transform: scale(1.1);
+  background-color: #ff1313;
+  color: white;
+  transition: 0.1s;
+}
+
+.part1 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+}
+
+.downloader .form .part1 button {
+  margin-right: 20px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  padding: 12px;
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+button i.fa-solid.fa-arrow-right {
+  z-index: 10;
+}
+
+@keyframes submit {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(200px);
+  }
+  25% {
+    transform: translateX(-100px);
+  }
+}
+
+.animate {
+  animation: submit 1s ease-in-out infinite;
+}
+
+.downloader .part1 button:hover {
+  transform: scale(1.1);
+  transition: 0.1s;
+  background-color: #ff1313;
+  color: white;
+}
+
+#loading {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate1 {
+  animation: loading 1s linear infinite;
+}
+
+@media screen and (max-height: 480px) {
+  .form {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+  }
+  .part1 {
+    width: 50%;
+  }
+  .url {
+    width: 100%;
+    max-height: 35px;
+  }
+  #video-info {
+    margin-top: 4%;
+  }
+}
