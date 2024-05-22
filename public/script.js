@@ -98,6 +98,20 @@ document.getElementById("enter").addEventListener("click", () => {
   }, 1000);
 });
 
+document.getElementById("url").addEventListener("input", () => {
+  fetchVideoInfo();
+});
+
+document.getElementById("url").addEventListener("paste", () => {
+  setTimeout(() => fetchVideoInfo(), 100); // Pequeno delay para garantir que o valor colado seja capturado
+});
+
+document.getElementById("url").addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    fetchVideoInfo();
+  }
+});
+
 function loading() {
   const container = document.getElementById("downloader");
   const loading = document.getElementById("loading");
