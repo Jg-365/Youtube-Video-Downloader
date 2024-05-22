@@ -1,14 +1,18 @@
+//Puxando as bibliotecas
 const express = require("express");
+
 const cors = require("cors");
 const ytdl = require("ytdl-core");
 const path = require("path");
 
+//Define a port e utiliza express.
 const app = express();
 const PORT = 3000;
-
-app.use(cors());
+//Define cors e serve a pasta public
+app.use(cors({ origin: "*" }));
 app.use(express.static(path.join(__dirname, "/public")));
 
+//Define uma rota para /info
 app.get("/info", async (req, res) => {
   const url = req.query.url;
   if (!url) {
@@ -36,6 +40,7 @@ app.get("/info", async (req, res) => {
   }
 });
 
+//Define uma rota para download
 app.get("/download", (req, res) => {
   const url = req.query.url;
   const itag = req.query.itag;
