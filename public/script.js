@@ -2,7 +2,7 @@ async function fetchVideoInfo() {
   //Animação de Login
   loading();
   //Pega o elemento input
-  const url = document.getElementById("url").value;
+  let url = document.getElementById("url").value;
 
   if (url.includes("youtu.be")) {
     const videoId = url.split("/").pop();
