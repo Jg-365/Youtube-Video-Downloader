@@ -11,7 +11,7 @@ async function fetchVideoInfo() {
 
   try {
     const response = await fetch(
-      `http://youtube-video-downloader-alpha.vercel.app/info?url=${encodeURIComponent(
+      `https://youtube-video-downloader-alpha.vercel.app/info?url=${encodeURIComponent(
         url
       )}`
     );
