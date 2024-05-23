@@ -1,29 +1,23 @@
 async function fetchVideoInfo() {
   loading();
-  let url = document.getElementById("url").value.trim(); // Use 'let' em vez de 'const'
-
-  // Normalizar URLs de youtu.be para youtube.com/watch?v=VIDEO_ID
+  var url = document.getElementById("url").value;
   if (url.includes("youtu.be")) {
-    const videoId = url.split("/").pop().split("?")[0]; // Handle potential query parameters
-    url = `https://www.youtube.com/watch?v=${videoId}`;
-  } else if (url.includes("youtube.com") && url.includes("watch")) {
-    // Ensure URL is well-formed for youtube.com
-    const urlObj = new URL(url);
-    const videoId = urlObj.searchParams.get("v");
-    if (videoId) {
-      url = `https://www.youtube.com/watch?v=${videoId}`;
-    }
+    const yt1 = url.slice(0, 17);
+    const yt2 = url.slice(17).split("?");
+    const videoId = yt2[0];
+    const newUrl = "https://youtube.com/watch?v=" + videoId;
+    url = newUrl;
   }
 
   try {
     const response = await fetch(
-      `https://youtube-video-downloader-pi.vercel.app/info?url=${encodeURIComponent(
-        url
-      )}`
+      `http://localhost:4000/info?url=${encodeURIComponent(url)}`
     );
     const data = await response.json();
+    console.log(data);
 
     if (response.ok) {
+      console.log(url);
       stopLoading();
       document.getElementById("video-info").style.display = "flex";
       document.getElementById("video-info").style.flexDirection = "column";
@@ -38,12 +32,14 @@ async function fetchVideoInfo() {
       const qualitySelect = document.getElementById("quality");
       qualitySelect.innerHTML = "";
       data.formats.forEach((format) => {
-        const option = document.createElement("option");
-        option.value = format.itag;
-        option.innerText = `${format.quality} ${
-          format.hasAudio ? "Video" : "Without Audio"
-        }`;
-        qualitySelect.appendChild(option);
+        if (["mp4", "webm"].includes(format.container)) {
+          const option = document.createElement("option");
+          option.value = format.itag;
+          option.innerText = `${format.quality} ${
+            format.hasAudio ? "com áudio" : "sem áudio"
+          }`;
+          qualitySelect.appendChild(option);
+        }
       });
     } else {
       alert(data.error);
@@ -52,54 +48,24 @@ async function fetchVideoInfo() {
     console.error("Fetch error:", error);
     alert("Failed to fetch video info");
   }
+  stopLoading();
 }
 
-document.getElementById("enter").addEventListener("click", fetchVideoInfo);
-document.getElementById("url").addEventListener("input", fetchVideoInfo);
-document.getElementById("url").addEventListener("paste", () => {
-  setTimeout(fetchVideoInfo, 100); // Pequeno delay para garantir que o valor colado seja capturado
-});
-document.getElementById("url").addEventListener("keypress", (event) => {
-  if (event.key === "Enter") {
-    fetchVideoInfo();
-  }
-});
-
 function downloadVideo() {
-  const url = document.getElementById("url").value.trim(); // Use 'let' em vez de 'const'
+  const url = document.getElementById("url").value;
   const itag = document.getElementById("quality").value;
-
-  // Normalizar URLs de youtu.be para youtube.com/watch?v=VIDEO_ID
-  let normalizedUrl = url;
-  if (url.includes("youtu.be")) {
-    const videoId = url.split("/").pop().split("?")[0]; // Handle potential query parameters
-    normalizedUrl = `https://www.youtube.com/watch?v=${videoId}`;
-  } else if (url.includes("youtube.com") && url.includes("watch")) {
-    // Ensure URL is well-formed for youtube.com
-    const urlObj = new URL(url);
-    const videoId = urlObj.searchParams.get("v");
-    if (videoId) {
-      normalizedUrl = `https://www.youtube.com/watch?v=${videoId}`;
-    }
-  }
-
-  window.location.href = `https://youtube-video-downloader-pi.vercel.app/download?url=${encodeURIComponent(
-    normalizedUrl
+  window.location.href = `http://localhost:4000/download?url=${encodeURIComponent(
+    url
   )}&itag=${itag}`;
 }
 
-document.getElementById("enter").addEventListener("click", fetchVideoInfo);
+document.getElementById("enter").addEventListener("click", () => {
+  const arrow = document.getElementById("arrow");
+  arrow.classList.add("animate");
 
-document.getElementById("url").addEventListener("input", fetchVideoInfo);
-
-document.getElementById("url").addEventListener("paste", () => {
-  setTimeout(fetchVideoInfo, 100); // Pequeno delay para garantir que o valor colado seja capturado
-});
-
-document.getElementById("url").addEventListener("keypress", (event) => {
-  if (event.key === "Enter") {
-    fetchVideoInfo();
-  }
+  setTimeout(() => {
+    arrow.classList.remove("animate");
+  }, 1000);
 });
 
 function loading() {
