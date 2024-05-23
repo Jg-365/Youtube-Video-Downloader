@@ -2,13 +2,18 @@ const express = require("express");
 const cors = require("cors");
 const ytdl = require("ytdl-core");
 const path = require("path");
-const http = require("http");
+const https = require("https");
 
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, "/public")));
+
+const options = {
+  key: fs.readFileSync(path.join(__dirname, "path/to/your/private-key.pem")),
+  cert: fs.readFileSync(path.join(__dirname, "path/to/your/certificate.pem")),
+};
 
 app.get("/info", async (req, res) => {
   const url = req.query.url;
