@@ -10,9 +10,7 @@ async function fetchVideoInfo() {
   }
 
   try {
-    const response = await fetch(
-      `https://localhost:4000/info?url=${encodeURIComponent(url)}`
-    );
+    const response = await fetch(`http://localhost:4000/info?url=${url}`);
     const data = await response.json();
     console.log(data);
 
@@ -54,9 +52,7 @@ async function fetchVideoInfo() {
 function downloadVideo() {
   const url = document.getElementById("url").value;
   const itag = document.getElementById("quality").value;
-  window.location.href = `https://localhost:4000/download?url=${encodeURIComponent(
-    url
-  )}&itag=${itag}`;
+  window.location.href = `http://localhost:4000/download?url=${url}&itag=${itag}`;
 }
 
 document.getElementById("enter").addEventListener("click", () => {
