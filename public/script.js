@@ -11,7 +11,7 @@ async function fetchVideoInfo() {
 
   try {
     const response = await fetch(
-      `http://localhost/info?url=${encodeURIComponent(url)}`
+      `http://localhost:4000/info?url=${encodeURIComponent(url)}`
     );
     const data = await response.json();
     console.log(response);
