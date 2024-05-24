@@ -11,9 +11,7 @@ async function fetchVideoInfo() {
 
   try {
     const response = await fetch(
-      `https://youtube-video-downloader-alpha.vercel.app/info?url=${encodeURIComponent(
-        url
-      )}`
+      `http://localhost/info?url=${encodeURIComponent(url)}`
     );
     const data = await response.json();
     console.log(response);
@@ -56,7 +54,7 @@ async function fetchVideoInfo() {
 function downloadVideo() {
   const url = document.getElementById("url").value;
   const itag = document.getElementById("quality").value;
-  window.location.href = `https://youtube-video-downloader-alpha.vercel.app/download?url=${encodeURIComponent(
+  window.location.href = `http://localhost:4000/download?url=${encodeURIComponent(
     url
   )}&itag=${itag}`;
 }
