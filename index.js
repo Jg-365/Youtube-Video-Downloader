@@ -58,6 +58,6 @@ app.get("/download", (req, res) => {
   ytdl(url, { filter: (format) => format.itag == itag }).pipe(res);
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on port ${PORT}`);
 });
