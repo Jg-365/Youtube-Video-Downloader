@@ -11,7 +11,7 @@ async function fetchVideoInfo() {
 
   try {
     const response = await fetch(
-      `youtube-video-downloader-lzy8.vercel.app/info?url=${encodeURIComponent(
+      `https://youtube-video-downloader-lzy8.vercel.app/info?url=${encodeURIComponent(
         url
       )}`
     );
@@ -57,7 +57,7 @@ async function fetchVideoInfo() {
 function downloadVideo() {
   const url = document.getElementById("url").value;
   const itag = document.getElementById("quality").value;
-  window.location.href = `youtube-video-downloader-lzy8.vercel.app/download?url=${encodeURIComponent(
+  window.location.href = `https://youtube-video-downloader-lzy8.vercel.app/download?url=${encodeURIComponent(
     url
   )}&itag=${itag}`;
 }
