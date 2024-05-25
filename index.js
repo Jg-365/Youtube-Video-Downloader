@@ -54,8 +54,12 @@ app.get("/download", (req, res) => {
     return res.status(400).json({ error: "URL and itag are required" });
   }
 
-  res.header("Content-Disposition", `attachment; filename="videos.mp4"`);
-  ytdl(url, { filter: (format) => format.itag == itag }).pipe(res);
+  res.header("Content-Disposition", `attachment; filename="video.mp4"`);
+  ytdl(url, { filter: (format) => format.itag == itag })
+    .pipe(res)
+    .on("error", (error) => {
+      res.status(500).json({ error: error.message });
+    });
 });
 
 app.listen(PORT, "0.0.0.0", () => {
