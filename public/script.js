@@ -11,10 +11,11 @@ async function fetchVideoInfo() {
 
   try {
     const response = await fetch(
-      `https://youtube-video-downloader-44dr.onrender.com/public/index.html/info?url=${encodeURIComponent(
+      `https://youtube-video-downloader-3lbl-hd1fvtlfs-jg-365s-projects.vercel.app/info?url=${encodeURIComponent(
         url
       )}`
     );
+
     const data = await response.json();
     console.log(response);
 
@@ -56,7 +57,7 @@ async function fetchVideoInfo() {
 function downloadVideo() {
   const url = document.getElementById("url").value;
   const itag = document.getElementById("quality").value;
-  window.location.href = `https://youtube-video-downloader-44dr.onrender.com/public/index.html/download?url=${encodeURIComponent(
+  window.location.href = `https://youtube-video-downloader-3lbl-hd1fvtlfs-jg-365s-projects.vercel.app/download?url=${encodeURIComponent(
     url
   )}&itag=${itag}`;
 }
