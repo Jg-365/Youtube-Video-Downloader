@@ -11,7 +11,9 @@ async function fetchVideoInfo() {
 
   try {
     const response = await fetch(
-      `http://localhost:4000/info?url=${encodeURIComponent(url)}`
+      `https://youtube-video-downloader-44dr.onrender.com/public/index.html/info?url=${encodeURIComponent(
+        url
+      )}`
     );
     const data = await response.json();
     console.log(response);
@@ -54,7 +56,7 @@ async function fetchVideoInfo() {
 function downloadVideo() {
   const url = document.getElementById("url").value;
   const itag = document.getElementById("quality").value;
-  window.location.href = `http://localhost:4000/download?url=${encodeURIComponent(
+  window.location.href = `https://youtube-video-downloader-44dr.onrender.com/public/index.html/download?url=${encodeURIComponent(
     url
   )}&itag=${itag}`;
 }
